@@ -1,12 +1,18 @@
+//Variables configurables
+var divisores = [2,5,3,4,6,9,11,15]; // lista de divisores, de menor a mayor dificultad
+var numDivisoresMismoNivel = 4; // numero de divisores que seran usados en un mismo nivel
+var tiempoExtraPorNivel = 10; //tiempo extra al empezar un nivel
+var tiempoInicialExtra = 5;  //tiempo extra al iniciar el juego
+var puntuacionesDificultad = [20,100,300,500]; //puntuaciones que marcan aumento de la dificultad (que cumpla divisores.length = numDivisoresMismoNivel + puntuacionesDificultad + 1 )
+// Fin variables configurables
+
 var divisor;
 var multiplo;
 var puntuacion = 0;
 var dificultad = 0;
-var tiempoRestante = 5;
 var tiempoExtra = 0;
-var divisores = [2,5,3,4,6,9,11,15];
 $("#restart").hide();
-startTimer(tiempoRestante);	
+startTimer(tiempoInicialExtra);	
 newLevel(dificultad);	
 
 function newLevel(dificultad){
@@ -16,7 +22,7 @@ function newLevel(dificultad){
 	$("#btnDivisor0").text(divisor[0]);
 	$("#btnDivisor1").text(divisor[1]);
 	$("#btnDivisor2").text(divisor[2]);
-	tiempoExtra = 10;
+	tiempoExtra = tiempoExtraPorNivel;
 	shuffleElements($('li')); 		
 }
 
@@ -54,16 +60,15 @@ $("#btnDivisor2").click(function(){
 });
 
 function setDificultad(puntuacion){
-	if (puntuacion < 20) {
-		dificultad = 0;
-	} else if (puntuacion < 100) {
-		dificultad = 1;
-	} else if (puntuacion < 300) {
-		dificultad = 2;
-	} else if (puntuacion < 500) {
-		dificultad = 3;
-	} else {
-		dificultad = 4;
+	var i;
+	if (puntuacion >= puntuacionesDificultad[puntuacionesDificultad.length - 1]){
+			dificultad = puntuacionesDificultad.length;
+	} else { 
+		for (i = 0; i < puntuacionesDificultad.length - 1; i++) {
+			if (puntuacion >= puntuacionesDificultad[i] &&  puntuacion < puntuacionesDificultad[i+1]) {
+				dificultad = i + 1;
+			}
+		}
 	}
 }
 
@@ -76,8 +81,8 @@ function isDivisible(multiplo, divisor){
 }
 
 function getDivisor(dificultad) {
-	var divisoresAux = divisores.slice(dificultad,dificultad + 4);
-	var divOK = divisores[Math.floor(Math.random() * divisoresAux.length)];
+	var divisoresAux = divisores.slice(dificultad,dificultad + numDivisoresMismoNivel);
+	var divOK = divisoresAux[Math.floor(Math.random() * divisoresAux.length)];
 	divisoresAux = divisoresAux.filter(function(elem){return elem != divOK;});
 	var divKO1 = divisoresAux[Math.floor(Math.random() * divisoresAux.length)];
 	divisoresAux = divisoresAux.filter(function(elem){return elem != divKO1;});
