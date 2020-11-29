@@ -4,7 +4,7 @@ var numDivisoresMismoNivel = 4; // numero de divisores que seran usados en un mi
 var tiempoExtraPorNivel = 10; //tiempo extra al empezar un nivel
 var tiempoInicialExtra = 5;  //tiempo extra al iniciar el juego
 var puntuacionesDificultad = [20,100,300,500]; //puntuaciones que marcan aumento de la dificultad (que cumpla divisores.length = numDivisoresMismoNivel + puntuacionesDificultad + 1 )
-// Fin variables configurables
+//Fin variables configurables
 
 var divisor;
 var multiplo;
@@ -23,7 +23,7 @@ function newLevel(dificultad){
 	$("#btnDivisor1").text(divisor[1]);
 	$("#btnDivisor2").text(divisor[2]);
 	tiempoExtra = tiempoExtraPorNivel;
-	shuffleElements($('li')); 		
+	shuffleElements($('#ulDivisores li')); 		
 }
 
 $("#btnDivisor0").click(function(){
@@ -154,3 +154,33 @@ function gameOver(){
 	$("#btnDivisor1").prop("disabled",true);
 	$("#btnDivisor2").prop("disabled",true);	
 }
+
+
+///// BOTON DE AYUDA //////
+
+// Get the modal
+var modal = document.getElementById("help");
+
+// Get the button that opens the modal
+var iconHelp = document.getElementById("icon-help");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+iconHelp.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+

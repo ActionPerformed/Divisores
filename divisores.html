@@ -5,19 +5,43 @@
 	<link rel="stylesheet" href="./css/main.css"> 
 </head>
 <body>
-<div id="time">00:15</div>
-<div id="puntuacion">Total puntos: 0</div>
-<div id ="titulo">¡ADIVINA EL DIVISOR!</div>
-<div id="number"></div>
+<div id="content-header">
+	<div id = "content-header-titulo">Adivina el divisor</div>
+	<div id = "content-header-help"><input type="image" id = "icon-help" src="./svg/help.svg"/></div> 	
+	<div class = "clear"></div>
+</div>
+<div id="content-body">
+	<div id="time">00:15</div>
+	<div id="puntuacion">Total puntos: 0</div>
+	<div id ="titulo">¡ADIVINA EL DIVISOR!</div>
+	<div id="number"></div>
+</div>
 <div>
-<ul>
-	<li><button id="btnDivisor0" class="boton"></button></li>
-	<li><button id="btnDivisor1" class="boton"></button></li>
-	<li><button id="btnDivisor2" class="boton"></button></li>
-</ul>
+	<ul id="ulDivisores">
+		<li><button id="btnDivisor0" class="boton"></button></li>
+		<li><button id="btnDivisor1" class="boton"></button></li>
+		<li><button id="btnDivisor2" class="boton"></button></li>
+	</ul>
+</div>
 <div id = "reiniciar">
 	<div><button id="restart">¡Juega otra vez!</button></div>
 </div>
+
+<div id="help" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<p class="strong center">CÓMO JUGAR:</p>
+		<ul class="justify">
+			<li>AL MENOS una de las tres opciones es un divisor del número mostrado.</li>
+			<li>Debes de acertar antes de que se acabe el tiempo.</li>
+			<li>Si aciertas, se mostrará otro número y ganarás más tiempo para jugar.</li>
+			<li>Cada acierto te sumará puntos.</li>
+			<li>¡Cuantos más puntos tengas, más difícil será el juego!</li>
+		</ul>
+	</div>
+</div>
+
 <script src="./js/main.js"></script>
 </body>
 </html>
